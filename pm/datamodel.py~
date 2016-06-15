@@ -59,7 +59,6 @@ class Task(object):
         if numberSubtasks>0:
             for task in self.subTasks:
                 print(task.name)
-                print(task.status)
                 print(task.percent_done())
                 subtaskPercent.append(task.percent_done())
             percentDone = sum(subtaskPercent)/numberSubtasks
