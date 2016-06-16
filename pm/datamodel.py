@@ -7,6 +7,16 @@ Data model for the Program Manager tool. Contains two types:
 
 """
 
+class Project(object):
+    def __init__(self,name,deadline,**kwargs):
+        self.name    = name
+        self.mission = mission
+        self.budget  = None
+        self.deadline= 
+        self.tasks   = []
+    def add_task(self,name,owner):
+        self.tasks.append(Task,name,owner)
+
 class Task(object):
 
     def __init__(self,name,owner,*args,**kwargs):
