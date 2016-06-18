@@ -7,6 +7,7 @@ The Program Manager (PM) tool is a command line tool for managing tasks.
 
 from datamodel import Person
 from datamodel import Task
+from datamodel import TaskList
 
 def main():
     people=[]
@@ -17,13 +18,16 @@ def main():
                'My fourth task']
 
     tasks=[]
+    tl = TaskList()
     for name in taskNames:
-        tasks.append(Task(name,people[0]))
-    tasks[0].add_subtask(tasks[1])
-    tasks[0].add_subtask(tasks[2])
-    tasks[0].add_subtask(tasks[3])
-    tasks[2].status='closed'
-    percentDone = tasks[0].percent_done()
+        tl.add_task(Task(name,people[0]))
+
+    tl.tasks[0].add_subtask(tl.tasks[1])
+    tl.tasks[0].add_subtask(tl.tasks[2])
+    tl.tasks[0].add_subtask(tl.tasks[3])
+    tl.tasks[1].status='closed'
+    tl.tasks[2].status='inprogress'
+    percentDone = tl.tasks[0].percent_done()
     print(percentDone)
 
     return(tasks,people)

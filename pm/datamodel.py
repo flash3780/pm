@@ -12,10 +12,34 @@ class Project(object):
         self.name    = name
         self.mission = mission
         self.budget  = None
-        self.deadline= 
         self.tasks   = []
     def add_task(self,name,owner):
         self.tasks.append(Task,name,owner)
+
+class TaskList(object):
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self,task):
+        if not isinstance(task,Task):
+            raise typeError('A Task object is expected.')
+        self.tasks.append(task)
+
+    def search_ID(self,ID):
+        for task in self.tasks:
+            if task.taskID == ID:
+                return(task.taskID)
+        raise lookupError('Unable to find task ID in task list.')
+
+    def search_name(self,search_string):
+        print('Not yet implemented')
+
+    def search_project(self,project):
+        tasks = []
+        for task in self.tasks:
+            if task.project == project:
+                tasks.append(task)
+        return(tasks)
 
 class Task(object):
 
@@ -31,6 +55,7 @@ class Task(object):
         self.owner        = None
         self.startDate    = None
         self.endDate      = None
+        self.projects     = []
         self.parentTasks  = [] 
         self.subTasks     = [] 
 
@@ -68,9 +93,6 @@ class Task(object):
         subtaskPercent = []
         if numberSubtasks>0:
             for task in self.subTasks:
-                print(task.name)
-                print(task.status)
-                print(task.percent_done())
                 subtaskPercent.append(task.percent_done())
             percentDone = sum(subtaskPercent)/numberSubtasks
             if percentDone>=100:
