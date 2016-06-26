@@ -17,8 +17,12 @@ class Project(object):
         self.tasks.append(Task,name,owner)
 
 class TaskList(object):
-    def __init__(self):
-        self.tasks = []
+    def __init__(self,*args):
+        tasks=[]
+        for arg in args:
+            if not isinstance(Task,arg):
+                raise typeError('A Task object is expected')
+            tasks.append(arg)
 
     def add_task(self,task):
         if not isinstance(task,Task):
@@ -41,13 +45,6 @@ class TaskList(object):
                 tasks.append(task)
         return(tasks)
 
-class TaskList(object):
-    def __init__(self,*args):
-        tasks=[]
-        for arg in args:
-            if not isinstance(Task,arg):
-                raise typeError('A Task object is expected')
-            tasks.append(arg)
 
 class Task(object):
 
